@@ -1,4 +1,4 @@
-compile = ["swiftc", "-o", "main", "main.swift", "utils/BinarySearch.swift", "utils/MapIterator.swift", "maps/LinearMap.swift", "maps/BinaryMap.swift", "maps/HashMap.swift", "maps/Map.swift"]
+compile = ["swiftc", "-o", "main", "main.swift", "Timer.swift", "utils/BinarySearch.swift", "utils/MapIterator.swift", "maps/LinearMap.swift", "maps/BinaryMap.swift", "maps/HashMap.swift", "maps/Map.swift"]
 run = ["./main"]
 
 entrypoint = "main.swift"
