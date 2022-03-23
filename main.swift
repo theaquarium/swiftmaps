@@ -1,6 +1,6 @@
 import Foundation
 
-let TASKS_PER_CYCLE = 50
+let TASKS_PER_CYCLE = 100
 let NUM_CYCLES = 100
 
 // func getRandomInt(range: Range<Int>) -> Int {
@@ -55,6 +55,12 @@ func test(withMap map: Map<String, String>) -> (getResults: [Int], setResults: [
     var getResults = [Int]()
     
     for cycle in 0..<NUM_CYCLES {
+        for task in 0..<TASKS_PER_CYCLE {
+            let str = strings[cycle * TASKS_PER_CYCLE + task]
+            map[str] = str
+            // usleep(100)
+        }
+
         let setTimer = Timer()
         setTimer.startTimer()
         for task in 0..<TASKS_PER_CYCLE {
@@ -93,7 +99,7 @@ print("Test Binary")
 let binary = test(withMap: BinaryMap<String, String>(withCapacity: TASKS_PER_CYCLE * NUM_CYCLES))
 
 print("Test Hash")
-let hash = test(withMap: HashMap<String, String>(initialArraySize: 10 * TASKS_PER_CYCLE * NUM_CYCLES))
+let hash = test(withMap: HashMap<String, String>(initialArraySize: 100 * TASKS_PER_CYCLE * NUM_CYCLES))
 
 writeTextFile("graphs/linear.csv", data: createCSV(linear))
 writeTextFile("graphs/binary.csv", data: createCSV(binary))
