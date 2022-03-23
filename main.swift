@@ -3,9 +3,9 @@ import Foundation
 let TASKS_PER_CYCLE = 50
 let NUM_CYCLES = 100
 
-func getRandomInt(range: Range<Int>) -> Int {
-    return Int.random(in: range)
-}
+// func getRandomInt(range: Range<Int>) -> Int {
+//     return Int.random(in: range)
+// }
 
 func makeStringList(count: Int) -> [String] {
     let maxLength = String(count).count
@@ -48,7 +48,7 @@ func makeStringList(count: Int) -> [String] {
 //     return list
 // }
 
-func test(withMap map: Map<String, String>) {
+func test(withMap map: Map<String, String>) -> (getResults: [Int], setResults: [Int]) {
     let strings = makeStringList(count: NUM_CYCLES * TASKS_PER_CYCLE)
 
     var setResults = [Int]()
@@ -80,14 +80,21 @@ func test(withMap map: Map<String, String>) {
         // if cycle % 10 == 0 {
         //     // print("Cycle \(cycle): set \(setResults[cycle])")
         // }
+
     }
+
+    return (getResults: getResults, setResults: setResults)
 }
 
 print("Test Linear")
-test(withMap: LinearMap<String, String>(withCapacity: TASKS_PER_CYCLE * NUM_CYCLES))
+let linear = test(withMap: LinearMap<String, String>(withCapacity: TASKS_PER_CYCLE * NUM_CYCLES))
 
 print("Test Binary")
-test(withMap: BinaryMap<String, String>(withCapacity: TASKS_PER_CYCLE * NUM_CYCLES))
+let binary = test(withMap: BinaryMap<String, String>(withCapacity: TASKS_PER_CYCLE * NUM_CYCLES))
 
 print("Test Hash")
-test(withMap: HashMap<String, String>(initialArraySize: 10 * TASKS_PER_CYCLE * NUM_CYCLES))
+let hash = test(withMap: HashMap<String, String>(initialArraySize: 10 * TASKS_PER_CYCLE * NUM_CYCLES))
+
+writeTextFile("graphs/linear.csv", data: createCSV(linear))
+writeTextFile("graphs/binary.csv", data: createCSV(binary))
+writeTextFile("graphs/hash.csv", data: createCSV(hash))
