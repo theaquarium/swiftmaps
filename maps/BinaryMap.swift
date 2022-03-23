@@ -1,6 +1,13 @@
 class BinaryMap<K : Hashable & Comparable, V>: Map<K, V> {
     private var keys: [K] = []
     private var values: [V] = []
+
+    init(withCapacity: Int? = nil) {
+        if let capacity = withCapacity {
+            keys.reserveCapacity(capacity)
+            values.reserveCapacity(capacity)
+        }
+    }
     
     override func set(_ k: K, _ v: V) {
         let (inArray, index) = binarySearch(elements: keys, target: k)

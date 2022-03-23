@@ -5,7 +5,7 @@ class Timer {
     var endTaskms: Int = 0
 
     static func getCurrentMillis() -> Int {
-        return Int(Date().timeIntervalSince1970 * 1000)
+        return Int(Date().timeIntervalSince1970 * 1000000)
     }
     
     func startTimer() {

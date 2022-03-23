@@ -2,6 +2,13 @@ class LinearMap<K: Hashable & Comparable, V>: Map<K, V> {
     private var keys: [K] = []
     private var values: [V] = []
 
+    init(withCapacity: Int? = nil) {
+        if let capacity = withCapacity {
+            keys.reserveCapacity(capacity)
+            values.reserveCapacity(capacity)
+        }
+    }
+
     private func findKeyIndex(_ k: K) -> Int? {
         for (index, key) in keys.enumerated() {
             if key == k {

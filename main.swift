@@ -1,20 +1,52 @@
 import Foundation
 
-let TASKS_PER_CYCLE = 100
-let NUM_CYCLES = 10
+let TASKS_PER_CYCLE = 50
+let NUM_CYCLES = 100
 
 func getRandomInt(range: Range<Int>) -> Int {
     return Int.random(in: range)
 }
 
 func makeStringList(count: Int) -> [String] {
-        var list = [String]()
-        for num in 0..<count {
-            list.append(String(num))
-        } 
-        
-        return list
+    let maxLength = String(count).count
+    var list = [String]()
+    for num in 0..<count {
+        let str = String(num)
+        // list.append(str)
+        list.append(String(repeating: "0", count: maxLength - str.count) + str)
     }
+    
+    return list
+}
+
+// func makeString(length: Int) -> String {
+//     let chars = Array("abcdefghijklmnopqrstuvwxyz")
+//     var s = ""
+//     let numberChars = chars.count
+//     for _ in 0..<length {
+//         s.append(chars[getRandomInt(range: 0..<numberChars)])
+//     }
+//     return s
+// }
+    
+// func makeStringList(count: Int, length: Int = 10) -> [String] {
+//     let chars = Array("abcdefghijklmnopqrstuvwxyz")
+//     var list = [String]()
+//     for num in 0..<count {
+//         var str = ""
+//         var remainingNum = num
+//         for pos in 0..<length {
+//             let mod = remainingNum % Int(pow(Double(chars.count), Double(pos)))
+//             let char = chars[mod % chars.count]
+//             // print(mod, char, remainingNum)
+//             remainingNum -= mod
+//             str.insert(char, at: str.startIndex)
+//         }
+//         list.append(str)
+//     } 
+    
+//     return list
+// }
 
 func test(withMap map: Map<String, String>) {
     let strings = makeStringList(count: NUM_CYCLES * TASKS_PER_CYCLE)
@@ -28,6 +60,7 @@ func test(withMap map: Map<String, String>) {
         for task in 0..<TASKS_PER_CYCLE {
             let str = strings[cycle * TASKS_PER_CYCLE + task]
             map[str] = str
+            // usleep(100)
         }
         setTimer.stopTimer()
         setResults.append(setTimer.elapsedTimeMs())
@@ -37,14 +70,24 @@ func test(withMap map: Map<String, String>) {
         for task in 0..<TASKS_PER_CYCLE {
             let str = strings[cycle * TASKS_PER_CYCLE + task]
             map.get(str)
+            // usleep(100)
         }
         getTimer.stopTimer()
         getResults.append(getTimer.elapsedTimeMs())
 
         print("Cycle \(cycle): set \(setResults[cycle]), get \(getResults[cycle])")
+        // print(map.count)
+        // if cycle % 10 == 0 {
+        //     // print("Cycle \(cycle): set \(setResults[cycle])")
+        // }
     }
-
-    print(setResults, getResults)
 }
 
-test(withMap: LinearMap<String, String>())
+print("Test Linear")
+test(withMap: LinearMap<String, String>(withCapacity: TASKS_PER_CYCLE * NUM_CYCLES))
+
+print("Test Binary")
+test(withMap: BinaryMap<String, String>(withCapacity: TASKS_PER_CYCLE * NUM_CYCLES))
+
+print("Test Hash")
+test(withMap: HashMap<String, String>(initialArraySize: 10 * TASKS_PER_CYCLE * NUM_CYCLES))

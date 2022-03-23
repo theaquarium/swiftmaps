@@ -1,33 +1,33 @@
 public class Benchmark {
     
 
-    /*func makeString(length: Int) -> String {
-        var s = ""
-        let numberChars = chars.count
-        for _ in 0..<length {
-            s.append(chars[getRandomInt(range: 0..<numberChars)])
-        }
-        return s
-    }*/
+    // func makeString(length: Int) -> String {
+    //     var s = ""
+    //     let numberChars = chars.count
+    //     for _ in 0..<length {
+    //         s.append(chars[getRandomInt(range: 0..<numberChars)])
+    //     }
+    //     return s
+    // }
     
-    /*func makeStringList(count: Int, length: Int) -> [String] {
-        let chars = Array("abcdefghijklmnopqrstuvwxyz")
-        var list = [String]()
-        for num in 0..<count {
-            var str = ""
-            var remainingNum = num
-            for pos in 0..<length {
-                let mod = remainingNum % Int(pow(Double(chars.count), Double(pos)))
-                let char = chars[mod % chars.count]
-                print(mod, char, remainingNum)
-                remainingNum -= mod
-                str.insert(char, at: str.startIndex)
-            }
-            list.append(str)
-        } 
+    // func makeStringList(count: Int, length: Int) -> [String] {
+    //     let chars = Array("abcdefghijklmnopqrstuvwxyz")
+    //     var list = [String]()
+    //     for num in 0..<count {
+    //         var str = ""
+    //         var remainingNum = num
+    //         for pos in 0..<length {
+    //             let mod = remainingNum % Int(pow(Double(chars.count), Double(pos)))
+    //             let char = chars[mod % chars.count]
+    //             print(mod, char, remainingNum)
+    //             remainingNum -= mod
+    //             str.insert(char, at: str.startIndex)
+    //         }
+    //         list.append(str)
+    //     } 
         
-        return list
-    }*/
+    //     return list
+    // }
 
     func doTest() -> Bool {
         print()
