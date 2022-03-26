@@ -19,7 +19,7 @@ draw_graph <- function(y_limit, samp_data, exp_formula) {
                 mapping = aes(x, y),
                 method = "lm",
                 formula = exp_formula,
-                color = "#233eb8",
+                color = "#251351",
                 linetype = "solid",
                 size = 5,
                 se = FALSE

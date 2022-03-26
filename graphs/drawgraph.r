@@ -39,7 +39,7 @@ draw_graph <- function(data_set, y_limit, samp_data, exp_formula, draw_top_graph
         se = FALSE
       ) +
       scale_color_manual(
-        values = c("#233eb8", "#21bd55", "#d46922")
+        values = c("#251351", "#58A4B0", "#D33F49")
       ) +
       guides(color = guide_legend(override.aes = list(size = 12))) +
       theme(
@@ -77,7 +77,7 @@ ggsave(
   plot = draw_graph(
     hash,
     c(0, 400),
-    data.frame(x = c(1, 100), y = c(100, 100), name = c("Expectation")),
+    data.frame(x = c(1, 100), y = c(60, 60), name = c("Expectation")),
     y ~ x,
     TRUE
   )
