@@ -101,6 +101,6 @@ let binary = test(withMap: BinaryMap<String, String>(withCapacity: TASKS_PER_CYC
 print("Test Hash")
 let hash = test(withMap: HashMap<String, String>(initialArraySize: 100 * TASKS_PER_CYCLE * NUM_CYCLES))
 
-writeTextFile("graphs/linear.csv", data: createCSV(linear))
-writeTextFile("graphs/binary.csv", data: createCSV(binary))
-writeTextFile("graphs/hash.csv", data: createCSV(hash))
+writeTextFile("graphs/data/linear.csv", data: createCSV(linear))
+writeTextFile("graphs/data/binary.csv", data: createCSV(binary))
+writeTextFile("graphs/data/hash.csv", data: createCSV(hash))
