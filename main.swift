@@ -104,3 +104,15 @@ let hash = test(withMap: HashMap<String, String>(initialArraySize: 100 * TASKS_P
 writeTextFile("graphs/data/linear.csv", data: createCSV(linear))
 writeTextFile("graphs/data/binary.csv", data: createCSV(binary))
 writeTextFile("graphs/data/hash.csv", data: createCSV(hash))
+writeTextFile("graphs/data/collision_safe_hash.csv", data: createCSV(collisionSafeHash))
+
+// Extra credit
+print("Test CollisionSafeHash")
+let collisionSafeHash = test(withMap: CollisionSafeHashMap<String, String>(initialArraySize: 100 * TASKS_PER_CYCLE * NUM_CYCLES))
+
+print("Test too small hashes")
+let hashSmall = test(withMap: HashMap<String, String>(initialArraySize: 2 * TASKS_PER_CYCLE * NUM_CYCLES))
+let collisionSafeHashSmall = test(withMap: CollisionSafeHashMap<String, String>(initialArraySize: 2 * TASKS_PER_CYCLE * NUM_CYCLES))
+
+writeTextFile("graphs/data/hash_small.csv", data: createCSV(hashSmall))
+writeTextFile("graphs/data/collision_safe_hash_small.csv", data: createCSV(collisionSafeHashSmall))

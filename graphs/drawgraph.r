@@ -2,10 +2,6 @@ library(ggplot2)
 
 options(scipen = 999)
 
-linear <- read.csv("data/linear.csv")
-binary <- read.csv("data/binary.csv")
-hash <- read.csv("data/hash.csv")
-
 draw_graph <- function(data_set, y_limit, samp_data, exp_formula, draw_top_graph = FALSE) {
   return(
     ggplot(
@@ -52,6 +48,13 @@ draw_graph <- function(data_set, y_limit, samp_data, exp_formula, draw_top_graph
   )
 }
 
+linear <- read.csv("data/linear.csv")
+binary <- read.csv("data/binary.csv")
+hash <- read.csv("data/hash.csv")
+collision_safe_hash <- read.csv("data/collision_safe_hash.csv")
+hash_small <- read.csv("data/hash_small.csv")
+collision_safe_hash_small <- read.csv("data/collision_safe_hash_small.csv")
+
 ggsave(
   "outputs/linear.png",
   plot = draw_graph(
@@ -78,6 +81,39 @@ ggsave(
     hash,
     c(0, 400),
     data.frame(x = c(1, 100), y = c(60, 60), name = c("Expectation")),
+    y ~ x,
+    TRUE
+  )
+)
+
+ggsave(
+  "outputs/collision_safe_hash.png",
+  plot = draw_graph(
+    collision_safe_hash,
+    c(0, 400),
+    data.frame(x = c(1, 100), y = c(100, 100), name = c("Expectation")),
+    y ~ x,
+    TRUE
+  )
+)
+
+ggsave(
+  "outputs/hash_small.png",
+  plot = draw_graph(
+    hash_small,
+    c(0, 400),
+    data.frame(x = c(1, 100), y = c(60, 60), name = c("Expectation")),
+    y ~ x,
+    TRUE
+  )
+)
+
+ggsave(
+  "outputs/collision_safe_hash_small.png",
+  plot = draw_graph(
+    collision_safe_hash_small,
+    c(0, 400),
+    data.frame(x = c(1, 100), y = c(85, 85), name = c("Expectation")),
     y ~ x,
     TRUE
   )
